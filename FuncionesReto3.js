@@ -57,7 +57,7 @@ function guardarInformacionCategory(){
 
 function traerInformacionBarco (){
     $.ajax({
-        url:"http://localhost:8080/api/Boat/all",
+        url:"http://132.226.163.197:8080/api/Boat/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
