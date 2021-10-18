@@ -1,11 +1,12 @@
 function traerInformacionCategory (){
     $.ajax({
-        url:"http://localhost:8080/api/Category/all",
+        url:"http://132.226.163.197:8080/api/Category/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
             console.log(respuesta);
             obtenerDatosCategory(respuesta);
+            llenarCategoria(respuesta);
         }
         });
 }
@@ -29,24 +30,29 @@ function guardarInformacionCategory(){
         name:$("#nameC").val(),
         desCategory:$("#descriptionC").val(),
     };
-    $.ajax({
-        type:"POST",
-        contentType: "application/json; charset=utf-8",
-        datatype:"JSON",
-        data: JSON.stringify(nuevo),
-        url:"http://localhost:8080/api/Category/save",
-        success:function(respuesta){
-            console.log(respuesta);
-            alert("Se ha agregado nueva categoría");
-            traerInformacionCategory();
-            window.location.reload()
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            window.location.reload()
-          alert("No se guardo correctamente");
-
-        }
-    });
+    if (nuevo.name == "" || nuevo.desCategory =="") {
+        alert("Todos los campos son obligatorios");
+    }else{
+        $.ajax({
+            type:"POST",
+            contentType: "application/json; charset=utf-8",
+            datatype:"JSON",
+            data: JSON.stringify(nuevo),
+            url:"http://132.226.163.197:8080/api/Category/save",
+            success:function(respuesta){
+                console.log(respuesta);
+                alert("Se ha agregado nueva categoría");
+                traerInformacionCategory();
+                window.location.reload()
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                window.location.reload()
+              alert("No se guardo correctamente");
+    
+            }
+        });
+    }
+    
 }
 
 function traerInformacionBarco (){
@@ -70,7 +76,6 @@ function obtenerDatosBarco (respuesta){
         tablaBarco += "<td>"+respuesta[i].brand + "</td>";
         tablaBarco += "<td>"+respuesta[i].year + "</td>";
         tablaBarco += "<td>"+respuesta[i].description + "</td>"; 
-        tablaBarco += "<td>"+respuesta[i].category.name + "</td>"; 
         tablaBarco += "</tr>";
     }
     tablaBarco += "</tbody>";
@@ -85,29 +90,42 @@ function guardarInformacionBarco(){
         description:$("#descriptionB").val(),
         nameBoat:$("#nameB").val(),
     };
-    $.ajax({
-        type:"POST",
-        contentType: "application/json; charset=utf-8",
-        datatype:"JSON",
-        data: JSON.stringify(nuevo),
-        url:"http://localhost:8080/api/Boat/save",
-        success:function(respuesta){
-            console.log(respuesta);
-            alert("Se ha agregado nuevo barco");
-            traerInformacionBarco();
-            window.location.reload()
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            window.location.reload()
-          alert("No se guardo correctamente");
+    if(nuevo.brand=="" || nuevo.year==""|| nuevo.description==""|| nuevo.nameBoat=="" ){
+        alert("Todos los campos son obligatorios")
+    }else{
+        $.ajax({
+            type:"POST",
+            contentType: "application/json; charset=utf-8",
+            datatype:"JSON",
+            data: JSON.stringify(nuevo),
+            url:"http:/132.226.163.197:8080/api/Boat/save",
+            success:function(respuesta){
+                console.log(respuesta);
+                alert("Se ha agregado nuevo barco");
+                traerInformacionBarco();
+                window.location.reload()
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                window.location.reload()
+              alert("No se guardo correctamente");
+    
+            }
+        });
+    }
+    
+}
 
-        }
-    });
+function llenarCategoria(respuesta){
+    let opciones="";
+    for(i=0; i<respuesta.length; i++){
+        opciones += "<option>" + respuesta[i].name + "</option>"
+    }
+    $("#boatC").append(opciones);
 }
 
 function traerInformacion (){
     $.ajax({
-        url:"http://localhost:8080/api/Client/all",
+        url:"http://132.226.163.197:8080/api/Client/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
@@ -139,29 +157,34 @@ function guardarInformacion(){
         age:$("#age").val(),
         passwordClient:$("#passwordC").val(),
     };
-    $.ajax({
-        type:"POST",
-        contentType: "application/json; charset=utf-8",
-        datatype:"JSON",
-        data: JSON.stringify(nuevo),
-        url:"http://localhost:8080/api/Client/save",
-        success:function(respuesta){
-            console.log(respuesta);
-            alert("Se ha agregado nuevo cliente");
-            traerInformacion();
-            window.location.reload()
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            window.location.reload()
-          alert("No se guardo correctamente");
-
-        }
-    });
+    if (nuevo.nameClient=="" || nuevo.emailClient=="" || nuevo.passwordClient=="" || nuevo.age=="") {
+        alert("Todos los campos son obligatorios")
+    } else {
+        $.ajax({
+            type:"POST",
+            contentType: "application/json; charset=utf-8",
+            datatype:"JSON",
+            data: JSON.stringify(nuevo),
+            url:"http://132.226.163.197:8080/api/Client/save",
+            success:function(respuesta){
+                console.log(respuesta);
+                alert("Se ha agregado nuevo cliente");
+                traerInformacion();
+                window.location.reload()
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                window.location.reload()
+              alert("No se guardo correctamente");
+    
+            }
+        });
+    }
+    
 }
 
 function traerInformacionMensaje(){
     $.ajax({
-        url:"http://localhost:8080/api/Message/all",
+        url:"http://132.226.163.197:8080/api/Message/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
@@ -188,29 +211,34 @@ function guardarInformacionMensaje(){
     let nuevo ={
        text:$("#m").val(),
     };
-    $.ajax({
-        type:"POST",
-        contentType: "application/json; charset=utf-8",
-        datatype:"JSON",
-        data: JSON.stringify(nuevo),
-        url:"http://localhost:8080/api/Message/save",
-        success:function(respuesta){
-            console.log(respuesta);
-            alert("Se ha agregado nuevo mensaje");
-            traerInformacionMensaje();
-            window.location.reload()
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            window.location.reload()
-          alert("No se guardo correctamente");
-
-        }
-    });
+    if (nuevo.text=="") {
+        alert("Todos los campos son obligatorios")
+    } else {
+        $.ajax({
+            type:"POST",
+            contentType: "application/json; charset=utf-8",
+            datatype:"JSON",
+            data: JSON.stringify(nuevo),
+            url:"http://132.226.163.197:8080/api/Message/save",
+            success:function(respuesta){
+                console.log(respuesta);
+                alert("Se ha agregado nuevo mensaje");
+                traerInformacionMensaje();
+                window.location.reload()
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                window.location.reload()
+              alert("No se guardo correctamente");
+    
+            }
+        });
+    }
+    
 }
 
 function traerInformacionAdmin(){
     $.ajax({
-        url:"http://localhost:8080/api/Admin/all",
+        url:"http://132.226.163.197:8080/api/Admin/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
@@ -240,29 +268,34 @@ function guardarInformacionAdmin(){
         emailAdmin:$("#emailA").val(),
         passwordAdmin:$("#passwordA").val(),
     };
-    $.ajax({
-        type:"POST",
-        contentType: "application/json; charset=utf-8",
-        datatype:"JSON",
-        data: JSON.stringify(nuevo),
-        url:"http://localhost:8080/api/Admin/save",
-        success:function(respuesta){
-            console.log(respuesta);
-            alert("Se ha agregado nuevo usuario");
-            traerInformacionAdmin();
-            window.location.reload()
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            window.location.reload()
-          alert("No se guardo correctamente");
-
-        }
-    });
+    if (nuevo.nameAdmin=="" || nuevo.passwordAdmin=="" || nuevo.emailAdmin=="") {
+        alert("Todos los campos son obligatorios")
+    } else {
+        $.ajax({
+            type:"POST",
+            contentType: "application/json; charset=utf-8",
+            datatype:"JSON",
+            data: JSON.stringify(nuevo),
+            url:"http://132.226.163.197:8080/api/Admin/save",
+            success:function(respuesta){
+                console.log(respuesta);
+                alert("Se ha agregado nuevo usuario");
+                traerInformacionAdmin();
+                window.location.reload()
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                window.location.reload()
+              alert("No se guardo correctamente");
+    
+            }
+        });
+    }
+    
 }
 
 function traerInformacionReserva(){
     $.ajax({
-        url:"http://localhost:8080/api/Reservation/all",
+        url:"http://132.226.163.197:8080/api/Reservation/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
@@ -293,22 +326,27 @@ function guardarInformacionReserva(){
         startDate:$("#Sdate").val(),
         endDate:$("#Edate").val(),
     };
-    $.ajax({
-        type:"POST",
-        contentType: "application/json; charset=utf-8",
-        datatype:"JSON",
-        data: JSON.stringify(nuevo),
-        url:"http://localhost:8080/api/Reservation/save",
-        success:function(respuesta){
-            console.log(respuesta);
-            alert("Se ha agregado nueva reserva");
-            traerInformacionReserva();
-            window.location.reload()
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            window.location.reload()
-          alert("No se guardo correctamente");
-
-        }
-    });
+    if (nuevo.startDate=="" || nuevo.endDate=="") {
+        alert("Todos los campos son obligatorios")
+    } else {
+        $.ajax({
+            type:"POST",
+            contentType: "application/json; charset=utf-8",
+            datatype:"JSON",
+            data: JSON.stringify(nuevo),
+            url:"http://132.226.163.197:8080/api/Reservation/save",
+            success:function(respuesta){
+                console.log(respuesta);
+                alert("Se ha agregado nueva reserva");
+                traerInformacionReserva();
+                window.location.reload()
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                window.location.reload()
+              alert("No se guardo correctamente");
+    
+            }
+        });
+    }
+    
 }
