@@ -1,6 +1,6 @@
 function traerInformacionCategory (){
     $.ajax({
-        url:"http://144.22.238.248:8080/api/Category/all",
+        url:"http://168.138.132.88:8080/api/Category/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
@@ -38,7 +38,7 @@ function guardarInformacionCategory(){
             contentType: "application/json; charset=utf-8",
             datatype:"JSON",
             data: JSON.stringify(nuevo),
-            url:"http://144.22.238.248:8080/api/Category/save",
+            url:"http://168.138.132.88:8080/api/Category/save",
             success:function(respuesta){
                 console.log(respuesta);
                 alert("Se ha agregado nueva categoría");
@@ -57,7 +57,7 @@ function guardarInformacionCategory(){
 
 function traerInformacionBarco (){
     $.ajax({
-        url:"http://144.22.238.248:8080/api/Boat/all",
+        url:"http://168.138.132.88:8080/api/Boat/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
@@ -98,7 +98,7 @@ function guardarInformacionBarco(){
             contentType: "application/json; charset=utf-8",
             datatype:"JSON",
             data: JSON.stringify(nuevo),
-            url:"http://144.22.238.248:8080/api/Boat/save",
+            url:"http://168.138.132.88:8080/api/Boat/save",
             success:function(respuesta){
                 console.log(respuesta);
                 alert("Se ha agregado nuevo barco");
@@ -125,7 +125,7 @@ function llenarCategoria(respuesta){
 
 function traerInformacion (){
     $.ajax({
-        url:"http://144.22.238.248:8080/api/Client/all",
+        url:"http://168.138.132.88:8080/api/Client/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
@@ -165,7 +165,7 @@ function guardarInformacion(){
             contentType: "application/json; charset=utf-8",
             datatype:"JSON",
             data: JSON.stringify(nuevo),
-            url:"http://144.22.238.248:8080/api/Client/save",
+            url:"http://168.138.132.88:8080/api/Client/save",
             success:function(respuesta){
                 console.log(respuesta);
                 alert("Se ha agregado nuevo cliente");
@@ -184,7 +184,7 @@ function guardarInformacion(){
 
 function traerInformacionMensaje(){
     $.ajax({
-        url:"http://144.22.238.248:8080/api/Message/all",
+        url:"http://168.138.132.88:8080/api/Message/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
@@ -219,7 +219,7 @@ function guardarInformacionMensaje(){
             contentType: "application/json; charset=utf-8",
             datatype:"JSON",
             data: JSON.stringify(nuevo),
-            url:"http://144.22.238.248:8080/api/Message/save",
+            url:"http://168.138.132.88:8080/api/Message/save",
             success:function(respuesta){
                 console.log(respuesta);
                 alert("Se ha agregado nuevo mensaje");
@@ -238,7 +238,7 @@ function guardarInformacionMensaje(){
 
 function traerInformacionAdmin(){
     $.ajax({
-        url:"http://144.22.238.248:8080/api/Admin/all",
+        url:"http://168.138.132.88:8080/api/Admin/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
@@ -276,7 +276,7 @@ function guardarInformacionAdmin(){
             contentType: "application/json; charset=utf-8",
             datatype:"JSON",
             data: JSON.stringify(nuevo),
-            url:"http://144.22.238.248:8080/api/Admin/save",
+            url:"http://168.138.132.88:8080/api/Admin/save",
             success:function(respuesta){
                 console.log(respuesta);
                 alert("Se ha agregado nuevo usuario");
@@ -295,7 +295,7 @@ function guardarInformacionAdmin(){
 
 function traerInformacionReserva(){
     $.ajax({
-        url:"http://144.22.238.248:8080/api/Reservation/all",
+        url:"http://168.138.132.88:8080/api/Reservation/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
@@ -334,7 +334,7 @@ function guardarInformacionReserva(){
             contentType: "application/json; charset=utf-8",
             datatype:"JSON",
             data: JSON.stringify(nuevo),
-            url:"http://144.22.238.248:8080/api/Reservation/save",
+            url:"http://168.138.132.88:8080/api/Reservation/save",
             success:function(respuesta){
                 console.log(respuesta);
                 alert("Se ha agregado nueva reserva");
