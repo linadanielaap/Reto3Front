@@ -1,6 +1,6 @@
 function traerInformacionCategory (){
     $.ajax({
-        url:"http://168.138.132.88:8080/api/Category/all",
+        url:"http://144.22.225.179:8080/api/Category/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
@@ -17,7 +17,7 @@ function obtenerDatosCategory (respuesta){
     for (i=0;i<respuesta.length;i++){
         tablaCategory += "<tr>";
         tablaCategory+= "<td id=''>"+respuesta[i].name + "</td>";
-        tablaCategory += "<td>"+respuesta[i].desCategory + "</td>";
+        tablaCategory += "<td>"+respuesta[i].description + "</td>";
         tablaCategory += "</tr>";
     }
     tablaCategory += "</tbody>";
@@ -28,9 +28,9 @@ function obtenerDatosCategory (respuesta){
 function guardarInformacionCategory(){
     let nuevo ={
         name:$("#nameC").val(),
-        desCategory:$("#descriptionC").val(),
+        description:$("#descriptionC").val(),
     };
-    if (nuevo.name == "" || nuevo.desCategory =="") {
+    if (nuevo.name == "" || nuevo.description =="") {
         alert("Todos los campos son obligatorios");
     }else{
         $.ajax({
@@ -38,7 +38,7 @@ function guardarInformacionCategory(){
             contentType: "application/json; charset=utf-8",
             datatype:"JSON",
             data: JSON.stringify(nuevo),
-            url:"http://168.138.132.88:8080/api/Category/save",
+            url:"http://144.22.225.179:8080/api/Category/save",
             success:function(respuesta){
                 console.log(respuesta);
                 alert("Se ha agregado nueva categoría");
@@ -57,7 +57,7 @@ function guardarInformacionCategory(){
 
 function traerInformacionBarco (){
     $.ajax({
-        url:"http://168.138.132.88:8080/api/Boat/all",
+        url:"http://144.22.225.179:8080/api/Boat/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
@@ -72,7 +72,7 @@ function obtenerDatosBarco (respuesta){
     tablaBarco += "<thead>" + "<tr>" +"<th>Nombre</th>"+"<th>Marca</th>"+"<th>Modelo</th>"+"<th>Descripción</th>" +"</tr>"+"</thead>"+"<tbody>";
     for (i=0;i<respuesta.length;i++){
         tablaBarco += "<tr>";
-        tablaBarco += "<td>"+respuesta[i].nameBoat + "</td>";
+        tablaBarco += "<td>"+respuesta[i].name + "</td>";
         tablaBarco += "<td>"+respuesta[i].brand + "</td>";
         tablaBarco += "<td>"+respuesta[i].year + "</td>";
         tablaBarco += "<td>"+respuesta[i].description + "</td>"; 
@@ -88,9 +88,9 @@ function guardarInformacionBarco(){
         brand:$("#brand").val(),
         year:$("#model").val(),
         description:$("#descriptionB").val(),
-        nameBoat:$("#nameB").val(),
+        name:$("#nameB").val(),
     };
-    if(nuevo.brand=="" || nuevo.year==""|| nuevo.description==""|| nuevo.nameBoat=="" ){
+    if(nuevo.brand=="" || nuevo.year==""|| nuevo.description==""|| nuevo.name=="" ){
         alert("Todos los campos son obligatorios")
     }else{
         $.ajax({
@@ -98,7 +98,7 @@ function guardarInformacionBarco(){
             contentType: "application/json; charset=utf-8",
             datatype:"JSON",
             data: JSON.stringify(nuevo),
-            url:"http://168.138.132.88:8080/api/Boat/save",
+            url:"http://144.22.225.179:8080/api/Boat/save",
             success:function(respuesta){
                 console.log(respuesta);
                 alert("Se ha agregado nuevo barco");
@@ -125,7 +125,7 @@ function llenarCategoria(respuesta){
 
 function traerInformacion (){
     $.ajax({
-        url:"http://168.138.132.88:8080/api/Client/all",
+        url:"http://144.22.225.179:8080/api/Client/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
@@ -140,8 +140,8 @@ function obtenerDatosCliente (respuesta){
     tablaCliente += "<thead>" + "<tr>" +"<th>Nombre</th>"+"<th>Email</th>"+"<th>Edad</th>"+ "</tr>"+"</thead>"+"<tbody>";
     for (i=0;i<respuesta.length;i++){
         tablaCliente += "<tr>";
-        tablaCliente += "<td>"+respuesta[i].nameClient + "</td>";
-        tablaCliente += "<td>"+respuesta[i].emailClient + "</td>";
+        tablaCliente += "<td>"+respuesta[i].name + "</td>";
+        tablaCliente += "<td>"+respuesta[i].email + "</td>";
         tablaCliente += "<td>"+respuesta[i].age + "</td>";
         tablaCliente += "</tr>";
     }
@@ -152,12 +152,12 @@ function obtenerDatosCliente (respuesta){
 
 function guardarInformacion(){
     let nuevo ={
-        nameClient:$("#name").val(),
-        emailClient:$("#email").val(),
+        name:$("#name").val(),
+        email:$("#email").val(),
         age:$("#age").val(),
-        passwordClient:$("#passwordC").val(),
+        password:$("#passwordC").val(),
     };
-    if (nuevo.nameClient=="" || nuevo.emailClient=="" || nuevo.passwordClient=="" || nuevo.age=="") {
+    if (nuevo.name=="" || nuevo.email=="" || nuevo.password=="" || nuevo.age=="") {
         alert("Todos los campos son obligatorios")
     } else {
         $.ajax({
@@ -165,7 +165,7 @@ function guardarInformacion(){
             contentType: "application/json; charset=utf-8",
             datatype:"JSON",
             data: JSON.stringify(nuevo),
-            url:"http://168.138.132.88:8080/api/Client/save",
+            url:"http://144.22.225.179:8080/api/Client/save",
             success:function(respuesta){
                 console.log(respuesta);
                 alert("Se ha agregado nuevo cliente");
@@ -184,7 +184,7 @@ function guardarInformacion(){
 
 function traerInformacionMensaje(){
     $.ajax({
-        url:"http://168.138.132.88:8080/api/Message/all",
+        url:"http://144.22.225.179:8080/api/Message/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
@@ -199,7 +199,7 @@ function obtenerDatosMensaje (respuesta){
     tablaMensaje += "<thead>" + "<tr>"+"<th>Mensaje</th>"+"</tr>"+"</thead>"+"<tbody>";
     for (i=0;i<respuesta.length;i++){
         tablaMensaje += "<tr>";
-        tablaMensaje += "<td>"+respuesta[i].text + "</td>";
+        tablaMensaje += "<td>"+respuesta[i].messageText + "</td>";
         tablaMensaje += "</tr>";
     }
     tablaMensaje += "</tbody>";
@@ -209,9 +209,9 @@ function obtenerDatosMensaje (respuesta){
 
 function guardarInformacionMensaje(){
     let nuevo ={
-       text:$("#m").val(),
+       messageText:$("#m").val(),
     };
-    if (nuevo.text=="") {
+    if (nuevo.messageText=="") {
         alert("Todos los campos son obligatorios")
     } else {
         $.ajax({
@@ -219,7 +219,7 @@ function guardarInformacionMensaje(){
             contentType: "application/json; charset=utf-8",
             datatype:"JSON",
             data: JSON.stringify(nuevo),
-            url:"http://168.138.132.88:8080/api/Message/save",
+            url:"http://144.22.225.179:8080/api/Message/save",
             success:function(respuesta){
                 console.log(respuesta);
                 alert("Se ha agregado nuevo mensaje");
@@ -238,7 +238,7 @@ function guardarInformacionMensaje(){
 
 function traerInformacionAdmin(){
     $.ajax({
-        url:"http://168.138.132.88:8080/api/Admin/all",
+        url:"http://144.22.225.179:8080/api/Admin/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
@@ -276,7 +276,7 @@ function guardarInformacionAdmin(){
             contentType: "application/json; charset=utf-8",
             datatype:"JSON",
             data: JSON.stringify(nuevo),
-            url:"http://168.138.132.88:8080/api/Admin/save",
+            url:"http://144.22.225.179:8080/api/Admin/save",
             success:function(respuesta){
                 console.log(respuesta);
                 alert("Se ha agregado nuevo usuario");
@@ -295,7 +295,7 @@ function guardarInformacionAdmin(){
 
 function traerInformacionReserva(){
     $.ajax({
-        url:"http://168.138.132.88:8080/api/Reservation/all",
+        url:"http://144.22.225.179:8080/api/Reservation/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
@@ -310,9 +310,9 @@ function obtenerDatosReserva(respuesta){
     tablaReserva += "<thead>" + "<tr>"+"<th>ID</th>" +"<th>Fecha Inicio</th>"+"<th>Fecha Devolución</th>"+ "<th>Status</th>"+"</tr>"+"</thead>"+"<tbody>";
     for (i=0;i<respuesta.length;i++){
         tablaReserva += "<tr>";
-        tablaReserva += "<td>"+respuesta[i].idReserva + "</td>";
+        tablaReserva += "<td>"+respuesta[i].idReservation + "</td>";
         tablaReserva += "<td>"+respuesta[i].startDate + "</td>";
-        tablaReserva += "<td>"+respuesta[i].endDate + "</td>";
+        tablaReserva += "<td>"+respuesta[i].devolutionDate + "</td>";
         tablaReserva += "<td>"+respuesta[i].status + "</td>";
         tablaReserva += "</tr>";
     }
@@ -324,9 +324,9 @@ function obtenerDatosReserva(respuesta){
 function guardarInformacionReserva(){
     let nuevo ={
         startDate:$("#Sdate").val(),
-        endDate:$("#Edate").val(),
+        devolutionDate:$("#Edate").val(),
     };
-    if (nuevo.startDate=="" || nuevo.endDate=="") {
+    if (nuevo.startDate=="" || nuevo.devolutionDate=="") {
         alert("Todos los campos son obligatorios")
     } else {
         $.ajax({
@@ -334,7 +334,7 @@ function guardarInformacionReserva(){
             contentType: "application/json; charset=utf-8",
             datatype:"JSON",
             data: JSON.stringify(nuevo),
-            url:"http://168.138.132.88:8080/api/Reservation/save",
+            url:"http://144.22.225.179:8080/api/Reservation/save",
             success:function(respuesta){
                 console.log(respuesta);
                 alert("Se ha agregado nueva reserva");
